@@ -43,7 +43,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db("DATABASE_URL", default='postgres://surv_user:surv_password@localhost:5432/SurvDB')
+    "default": env.db("DATABASE_URL", default='postgres://surv_user')
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
