@@ -329,6 +329,7 @@ tags
 pyvenv.cfg
 pip-selfcheck.json
 .env
+chromedriver.exe
 
 
 ### Project template
