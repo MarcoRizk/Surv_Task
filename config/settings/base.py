@@ -244,3 +244,4 @@ SOCIALACCOUNT_ADAPTER = "surv_task.users.adapters.SocialAccountAdapter"
 # Your stuff...
 # ------------------------------------------------------------------------------
 
+CELERY_BROKER_URL = env('CELERY_BROKER_URL', default="redis://localhost:6379")
