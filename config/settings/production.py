@@ -1,6 +1,5 @@
 from .base import *  # noqa
 from .base import env
-import django_heroku
 
 
 # GENERAL
@@ -205,5 +204,4 @@ LOGGING = {
 
 # Your stuff...
 # ------------------------------------------------------------------------------
-django_heroku.settings(locals())
-TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
+

@@ -3,6 +3,7 @@ Base settings to build other settings files upon.
 """
 
 import environ
+import django_heroku
 
 ROOT_DIR = (
     environ.Path(__file__) - 3
@@ -241,3 +242,5 @@ SOCIALACCOUNT_ADAPTER = "surv_task.users.adapters.SocialAccountAdapter"
 
 # Your stuff...
 # ------------------------------------------------------------------------------
+django_heroku.settings(locals())
+TEST_RUNNER = 'django_heroku.HerokuDiscoverRunner'
