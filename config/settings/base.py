@@ -4,10 +4,10 @@ Base settings to build other settings files upon.
 
 import environ
 
-ROOT_DIR = (
+BASE_DIR = (
     environ.Path(__file__) - 3
 )  # (surv_task/config/settings/base.py - 3 = surv_task/)
-APPS_DIR = ROOT_DIR.path("surv_task")
+APPS_DIR = BASE_DIR.path("surv_task")
 
 env = environ.Env()
 
@@ -16,7 +16,7 @@ READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
 
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
-    env.read_env(str(ROOT_DIR.path(".env")))
+    env.read_env(str(BASE_DIR.path(".env")))
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -138,7 +138,7 @@ MIDDLEWARE = [
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = str(ROOT_DIR("staticfiles"))
+STATIC_ROOT = str(BASE_DIR("staticfiles"))
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
