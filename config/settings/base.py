@@ -4,10 +4,10 @@ Base settings to build other settings files upon.
 
 import environ
 
-BASE_DIR = (
+ROOT_DIR = (
     environ.Path(__file__) - 3
 )  # (surv_task/config/settings/base.py - 3 = surv_task/)
-APPS_DIR = BASE_DIR.path("surv_task")
+APPS_DIR = ROOT_DIR.path("surv_task")
 
 env = environ.Env()
 
@@ -16,7 +16,7 @@ READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=True)
 
 if READ_DOT_ENV_FILE:
     # OS environment variables take precedence over variables from .env
-    env.read_env(str(BASE_DIR.path(".env")))
+    env.read_env(str(ROOT_DIR.path(".env")))
 
 # GENERAL
 # ------------------------------------------------------------------------------
@@ -43,7 +43,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    "default": env.db("DATABASE_URL", default='postgres://surv_user')
+    "default": env.db("DATABASE_URL", default='postgres://surv_user:surv_password@localhost:5432/SurvDB')
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
 
@@ -133,14 +133,12 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-
 ]
 
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = str(BASE_DIR("staticfiles"))
+STATIC_ROOT = str(ROOT_DIR("staticfiles"))
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
 # https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
@@ -244,4 +242,3 @@ SOCIALACCOUNT_ADAPTER = "surv_task.users.adapters.SocialAccountAdapter"
 # Your stuff...
 # ------------------------------------------------------------------------------
 
-CELERY_BROKER_URL = env('CELERY_BROKER_URL', default="redis://localhost:6379")
