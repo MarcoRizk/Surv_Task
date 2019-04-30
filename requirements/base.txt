@@ -23,4 +23,6 @@ google == 2.0.2
 
 #installing on Heroku
 django-heroku==0.3.1
+gunicorn==19.9.0  # https://github.com/benoitc/gunicorn
+
 
